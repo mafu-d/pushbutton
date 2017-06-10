@@ -8,7 +8,17 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                    <h2>Arenas</h2>
+                    <p><a href="{{ action('ArenaController@createForm') }}" class="btn btn-primary">Create new arena</a></p>
+                    @foreach (App\Arena::all() as $arena)
+                        <div class="arena panel panel-default">
+                            <div class="panel-heading">{{ $arena->name }}</div>
+                            <div class="panel-body">
+                                <p>Players: {{ $arena->users()->count() }}</p>
+                                <p><a href="#" class="btn btn-primary">Join</a></p>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

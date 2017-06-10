@@ -14,7 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/arenas/create', 'ArenaController@createForm');
+    Route::post('/arenas/create', 'ArenaController@create');
+});
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
